@@ -24,7 +24,7 @@ namespace KataTennis
             var game = new Game(1, 0)
                 .ScoreRight();
             Assert.AreEqual(1, game.LeftScore);
-            Assert.AreEqual(0, game.RightScore);
+            Assert.AreEqual(1, game.RightScore);
         }
     }
 
