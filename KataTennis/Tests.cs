@@ -138,13 +138,25 @@ namespace KataTennis
 
         private void ScorePlayer(Player scorer, Player loser)
         {
-            if (scorer.Score == Score.Forty &&
-                loser.Score < Score.Forty)
+            if (scorer.Score == Score.Forty)
             {
-                scorer.Score = Score.Won;
-                return;
+                if (loser.Score < Score.Forty)
+                {
+                    scorer.Score = Score.Won;
+                }
+                else if (loser.Score == Score.Forty)
+                {
+                    scorer.Score = Score.Advantage;
+                }
+                else
+                {
+                    loser.Score = Score.Forty;
+                }
             }
-            scorer.Score++;
+            else
+            {
+                scorer.Score++;
+            }
         }
 
         private class Player
