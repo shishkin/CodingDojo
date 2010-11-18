@@ -27,7 +27,8 @@ namespace KataTennis
 
         public Game ScoreLeft()
         {
-            throw new NotImplementedException();
+            LeftScore++;
+            return this;
         }
     }
 }
