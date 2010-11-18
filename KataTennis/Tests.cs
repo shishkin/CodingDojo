@@ -10,37 +10,47 @@ namespace KataTennis
     public class Tests
     {
         [TestMethod]
-        public void Given_0_0_when_left_scores_should_state_1_0()
+        public void Given_Love_Love_when_left_scores_should_state_Fifteen_Love()
         {
             var game = new Game()
                 .ScoreLeft();
-            Assert.AreEqual(1, game.LeftScore);
-            Assert.AreEqual(0, game.RightScore);
+            Assert.AreEqual(Score.Fifteen, game.LeftScore);
+            Assert.AreEqual(Score.Love, game.RightScore);
         }
 
         [TestMethod]
-        public void Given_1_0_when_right_scores_should_state_1_1()
+        public void Given_Fifteen_Love_when_right_scores_should_state_Fifteen_Fifteen()
         {
-            var game = new Game(1, 0)
+            var game = new Game(Score.Fifteen, Score.Love)
                 .ScoreRight();
-            Assert.AreEqual(1, game.LeftScore);
-            Assert.AreEqual(1, game.RightScore);
+            Assert.AreEqual(Score.Fifteen, game.LeftScore);
+            Assert.AreEqual(Score.Fifteen, game.RightScore);
         }
+    }
+
+    public enum Score
+    {
+        Love,
+        Fifteen,
+        Thirty,
+        Forty,
+        Advantage,
+        Won
     }
 
     public class Game
     {
-        public Game() : this (0, 0){}
+        public Game() : this (Score.Love, Score.Love){}
 
-        public Game(int left, int right)
+        public Game(Score left, Score right)
         {
             LeftScore = left;
             RightScore = right;
         }
 
-        public int LeftScore { get; private set; }
+        public Score LeftScore { get; private set; }
         
-        public int RightScore { get; private set; }
+        public Score RightScore { get; private set; }
 
         public Game ScoreLeft()
         {
