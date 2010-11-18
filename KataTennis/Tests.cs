@@ -81,7 +81,14 @@ namespace KataTennis
 
         public Game ScoreLeft()
         {
-            LeftScore++;
+            if (LeftScore == Score.Forty)
+            {
+                LeftScore = Score.Won;
+            }
+            else
+            {
+                LeftScore++;
+            }
             return this;
         }
 
