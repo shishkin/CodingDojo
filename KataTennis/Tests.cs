@@ -44,6 +44,15 @@ namespace KataTennis
             Assert.AreEqual(Score.Fifteen, game.LeftScore);
             Assert.AreEqual(Score.Fifteen, game.RightScore);
         }
+
+        [TestMethod]
+        public void Given_Forty_Love_when_left_scores_should_state_Won_Love()
+        {
+            var game = new Game(Score.Forty, Score.Love)
+                .ScoreLeft();
+            Assert.AreEqual(Score.Won, game.LeftScore);
+            Assert.AreEqual(Score.Love, game.RightScore);
+        }
     }
 
     public enum Score
