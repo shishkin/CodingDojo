@@ -28,6 +28,15 @@ namespace KataTennis
         }
 
         [TestMethod]
+        public void Given_Thirty_Love_when_left_scores_should_state_Forty_Love()
+        {
+            var game = new Game(Score.Thirty, Score.Love)
+                .ScoreLeft();
+            Assert.AreEqual(Score.Forty, game.LeftScore);
+            Assert.AreEqual(Score.Love, game.RightScore);
+        }
+
+        [TestMethod]
         public void Given_Fifteen_Love_when_right_scores_should_state_Fifteen_Fifteen()
         {
             var game = new Game(Score.Fifteen, Score.Love)
