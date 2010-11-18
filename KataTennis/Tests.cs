@@ -80,6 +80,15 @@ namespace KataTennis
             Assert.AreEqual(Score.Won, game.LeftScore);
             Assert.AreEqual(Score.Forty, game.RightScore);
         }
+
+        [TestMethod]
+        public void Given_Advantage_Forty_when_right_scores_should_state_Forty_Forty()
+        {
+            var game = new Game(Score.Advantage, Score.Forty)
+                .ScoreRight();
+            Assert.AreEqual(Score.Forty, game.LeftScore);
+            Assert.AreEqual(Score.Forty, game.RightScore);
+        }
     }
 
     public enum Score
