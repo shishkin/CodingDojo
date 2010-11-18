@@ -88,7 +88,7 @@ namespace KataTennis
         private readonly Player left;
         private readonly Player right;
 
-        public Game() : this (Score.Love, Score.Love){}
+        public Game() : this(Score.Love, Score.Love) { }
 
         public Game(Score leftScore, Score rightScore)
         {
@@ -120,14 +120,13 @@ namespace KataTennis
 
         private void ScorePlayer(Player scorer, Player loser)
         {
-            if (scorer.Score == Score.Forty)
+            if (scorer.Score == Score.Forty &&
+                loser.Score < Score.Forty)
             {
                 scorer.Score = Score.Won;
+                return;
             }
-            else
-            {
-                scorer.Score++;
-            }
+            scorer.Score++;
         }
 
         private class Player
