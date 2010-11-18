@@ -76,42 +76,54 @@ namespace KataTennis
 
     public class Game
     {
+        private readonly Player left;
+        private readonly Player right;
+
         public Game() : this (Score.Love, Score.Love){}
 
-        public Game(Score left, Score right)
+        public Game(Score leftScore, Score rightScore)
         {
-            LeftScore = left;
-            RightScore = right;
+            left = new Player { Score = leftScore };
+            right = new Player { Score = rightScore };
         }
 
-        public Score LeftScore { get; private set; }
-        
-        public Score RightScore { get; private set; }
+        public Score LeftScore
+        {
+            get { return left.Score; }
+        }
+
+        public Score RightScore
+        {
+            get { return right.Score; }
+        }
 
         public Game ScoreLeft()
         {
-            if (LeftScore == Score.Forty)
-            {
-                LeftScore = Score.Won;
-            }
-            else
-            {
-                LeftScore++;
-            }
+            ScorePlayer(left, right);
             return this;
         }
 
         public Game ScoreRight()
         {
-            if (RightScore == Score.Forty)
+            ScorePlayer(right, left);
+            return this;
+        }
+
+        private void ScorePlayer(Player scorer, Player loser)
+        {
+            if (scorer.Score == Score.Forty)
             {
-                RightScore = Score.Won;
+                scorer.Score = Score.Won;
             }
             else
             {
-                RightScore++;
+                scorer.Score++;
             }
-            return this;
+        }
+
+        private class Player
+        {
+            public Score Score { get; set; }
         }
     }
 }
