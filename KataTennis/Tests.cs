@@ -50,7 +50,8 @@ namespace KataTennis
 
         public Game ScoreRight()
         {
-            throw new NotImplementedException();
+            RightScore++;
+            return this;
         }
     }
 }
