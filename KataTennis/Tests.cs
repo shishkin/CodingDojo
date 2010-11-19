@@ -96,6 +96,13 @@ namespace KataTennis
         }
 
         [TestMethod]
+        public void Given_Advantage_Forty_the_game_should_continue()
+        {
+            var game = new Game(Score.Advantage, Score.Forty);
+            Assert.IsFalse(game.HasEnded);
+        }
+
+        [TestMethod]
         public void Given_Advantage_Forty_when_left_scores_should_state_Won_Forty()
         {
             var game = new Game(Score.Advantage, Score.Forty)
@@ -105,12 +112,28 @@ namespace KataTennis
         }
 
         [TestMethod]
+        public void Given_Advantage_Forty_when_left_scores_the_game_should_be_ended()
+        {
+            var game = new Game(Score.Advantage, Score.Forty)
+                .ScoreLeft();
+            Assert.IsTrue(game.HasEnded);
+        }
+
+        [TestMethod]
         public void Given_Advantage_Forty_when_right_scores_should_state_Forty_Forty()
         {
             var game = new Game(Score.Advantage, Score.Forty)
                 .ScoreRight();
             Assert.AreEqual(Score.Forty, game.LeftScore);
             Assert.AreEqual(Score.Forty, game.RightScore);
+        }
+
+        [TestMethod]
+        public void Given_Advantage_Forty_when_right_scores_the_game_should_continue()
+        {
+            var game = new Game(Score.Advantage, Score.Forty)
+                .ScoreRight();
+            Assert.IsFalse(game.HasEnded);
         }
     }
 
