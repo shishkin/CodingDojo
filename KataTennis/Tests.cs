@@ -10,6 +10,13 @@ namespace KataTennis
     public class Tests
     {
         [TestMethod]
+        public void Given_new_game_the_game_should_continue()
+        {
+            var game = new Game();
+            Assert.IsFalse(game.HasEnded);
+        }
+
+        [TestMethod]
         public void Given_Love_Love_when_left_scores_should_state_Fifteen_Love()
         {
             var game = new Game()
@@ -19,9 +26,10 @@ namespace KataTennis
         }
 
         [TestMethod]
-        public void Given_new_game_the_game_should_continue()
+        public void Given_Love_Love_when_left_scores_the_game_should_continue()
         {
-            var game = new Game();
+            var game = new Game()
+                .ScoreLeft();
             Assert.IsFalse(game.HasEnded);
         }
 
@@ -59,6 +67,14 @@ namespace KataTennis
                 .ScoreLeft();
             Assert.AreEqual(Score.Won, game.LeftScore);
             Assert.AreEqual(Score.Love, game.RightScore);
+        }
+
+        [TestMethod]
+        public void Given_Forty_Love_when_left_scores_the_game_should_be_ended()
+        {
+            var game = new Game(Score.Forty, Score.Love)
+                .ScoreLeft();
+            Assert.IsTrue(game.HasEnded);
         }
 
         [TestMethod]
