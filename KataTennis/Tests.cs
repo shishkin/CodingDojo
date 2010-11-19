@@ -19,6 +19,13 @@ namespace KataTennis
         }
 
         [TestMethod]
+        public void Given_new_game_the_game_should_continue()
+        {
+            var game = new Game();
+            Assert.IsFalse(game.HasEnded);
+        }
+
+        [TestMethod]
         public void Given_Fifteen_Love_when_left_scores_should_state_Thirty_Love()
         {
             var game = new Game(Score.Fifteen, Score.Love)
@@ -123,6 +130,8 @@ namespace KataTennis
         {
             get { return right.Score; }
         }
+
+        public bool HasEnded { get; private set; }
 
         public Game ScoreLeft()
         {
