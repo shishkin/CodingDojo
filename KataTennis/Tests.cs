@@ -147,7 +147,10 @@ namespace KataTennis
             get { return right.Score; }
         }
 
-        public bool HasEnded { get; private set; }
+        public bool HasEnded
+        {
+            get { return LeftScore == Score.Won || RightScore == Score.Won; }
+        }
 
         public Game ScoreLeft()
         {
