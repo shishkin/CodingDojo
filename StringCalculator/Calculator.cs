@@ -15,6 +15,7 @@
         [InlineData("Ignore whitespaces", " 2,5 + \n 6\t", 8.5)]
         [InlineData("Multiplication", "6 * 1,5", 9)]
         [InlineData("Substraction", "6 - 3,5", 2.5)]
+        [InlineData("Division", "10 / 8", 1.25)]
         public void Examples(
             string scenario,
             string expression,
@@ -33,7 +34,8 @@
         private static readonly Func<string, double> Pipeline = Parse
             .Wrap('+', (a, b) => a + b)
             .Wrap('-', (a, b) => a - b)
-            .Wrap('*', (a, b) => a*b);
+            .Wrap('/', (a, b) => a / b)
+            .Wrap('*', (a, b) => a * b);
 
         public double Evaluate(string expression)
         {
