@@ -1,23 +1,35 @@
 ﻿namespace StringCalculator
 {
+    using System.Linq;
+
     using Should;
 
-    using Xunit;
+    using Xunit.Extensions;
 
     public class Tests
     {
-        [Fact]
-        public void Evaluate_decimal_constant()
+        [Theory]
+        [InlineData("Evaluate constant", "3,14", 3.14)]
+        [InlineData("Evaluate simple addition", "3+4", 7)]
+        public void Examples(
+            string scenario,
+            string expression,
+            double expectedResult)
         {
-            new Calculator().Evaluate("3,14").ShouldEqual(3.14m);
+            new Calculator()
+                .Evaluate(expression)
+                .ShouldEqual(expectedResult, scenario);
         }
     }
 
     public class Calculator
     {
-        public decimal Evaluate(string expression)
+        public double Evaluate(string expression)
         {
-            return decimal.Parse(expression);
+            return expression
+                .Split('+')
+                .Select(x => double.Parse(x))
+                .Aggregate((a, b) => a + b);
         }
     }
 }
