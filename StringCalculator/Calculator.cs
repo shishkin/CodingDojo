@@ -1,5 +1,6 @@
 ﻿namespace StringCalculator
 {
+    using System;
     using System.Linq;
 
     using Should;
@@ -26,25 +27,29 @@
 
     public class Calculator
     {
+        private static readonly Func<string, double> Parse = double.Parse;
+
+        private static readonly Func<string, double> Pipeline = Parse
+            .Wrap('+', (a, b) => a + b)
+            .Wrap('*', (a, b) => a*b);
+
         public double Evaluate(string expression)
         {
-            return EvaluateMultiplications(expression);
+            return Pipeline(expression);
         }
+    }
 
-        private double EvaluateMultiplications(string expression)
+    public static class PipelineExtensions
+    {
+        public static Func<string, double> Wrap(
+            this Func<string, double> inner,
+            char split,
+            Func<double, double, double> aggregate)
         {
-            return expression
-                .Split('*')
-                .Select(EvaluateAdditions)
-                .Aggregate((a, b) => a * b);
-        }
-
-        private double EvaluateAdditions(string expression)
-        {
-            return expression
-                .Split('+')
-                .Select(x => double.Parse(x))
-                .Aggregate((a, b) => a + b);
+            return expression => expression
+                .Split(split)
+                .Select(inner)
+                .Aggregate(aggregate);
         }
     }
 }
