@@ -18,7 +18,7 @@
     {
         public decimal Evaluate(string expression)
         {
-            throw new NotImplementedException();
+            return decimal.Parse(expression);
         }
     }
 }
