@@ -1,9 +1,8 @@
 ﻿namespace StringCalculator
 {
-    using System;
+    using Should;
 
     using Xunit;
-    using Should;
 
     public class Tests
     {
