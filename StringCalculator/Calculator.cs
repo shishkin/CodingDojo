@@ -16,6 +16,7 @@
         [InlineData("Multiplication", "6 * 1,5", 9)]
         [InlineData("Substraction", "6 - 3,5", 2.5)]
         [InlineData("Division", "10 / 8", 1.25)]
+        [InlineData("Operator precedence", "2 * 3 + 4 * 5 - 8 / 4", 24)]
         public void Examples(
             string scenario,
             string expression,
@@ -32,10 +33,11 @@
         private static readonly Func<string, double> Parse = double.Parse;
 
         private static readonly Func<string, double> Pipeline = Parse
+            .Wrap('*', (a, b) => a*b)
+            .Wrap('/', (a, b) => a/b)
             .Wrap('+', (a, b) => a + b)
             .Wrap('-', (a, b) => a - b)
-            .Wrap('/', (a, b) => a / b)
-            .Wrap('*', (a, b) => a * b);
+            ;
 
         public double Evaluate(string expression)
         {
