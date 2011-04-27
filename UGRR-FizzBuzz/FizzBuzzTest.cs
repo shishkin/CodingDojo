@@ -13,6 +13,7 @@
         [InlineData(4, "4", "Four is Four")]
         [InlineData(5, "Buzz", "Five is Buzz")]
         [InlineData(6, "Fizz", "Six is Fizz")]
+        [InlineData(10, "Buzz", "Ten is Buzz")]
         public void NumberIsNumber(
             int number,
             string result,
@@ -32,7 +33,7 @@
             {
                 return "Fizz";
             }
-            if (number == 5)
+            if (number % 5 == 0)
             {
                 return "Buzz";
             }
