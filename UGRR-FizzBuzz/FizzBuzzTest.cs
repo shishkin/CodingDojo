@@ -12,6 +12,7 @@
         [InlineData(3, "Fizz", "Three is Fizz")]
         [InlineData(4, "4", "Four is Four")]
         [InlineData(5, "Buzz", "Five is Buzz")]
+        [InlineData(6, "Fizz", "Six is Fizz")]
         public void NumberIsNumber(
             int number,
             string result,
@@ -27,7 +28,7 @@
     {
         public string Test(int number)
         {
-            if (number == 3)
+            if (number % 3 == 0)
             {
                 return "Fizz";
             }
