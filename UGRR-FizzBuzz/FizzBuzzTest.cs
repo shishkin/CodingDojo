@@ -31,19 +31,29 @@
         public string Test(int number)
         {
             var result = "";
-            if (number % 3 == 0)
+            if (IsFizz(number))
             {
                 result += "Fizz";
             }
-            if (number % 5 == 0)
+            if (IsBuzz(number))
             {
                 result += "Buzz";
             }
-            if (result == "")
+            if (!IsFizz(number) && !IsBuzz(number))
             {
                 result = number.ToString();
             }
             return result;
+        }
+
+        private bool IsBuzz(int number)
+        {
+            return number % 5 == 0;
+        }
+
+        private bool IsFizz(int number)
+        {
+            return number % 3 == 0;
         }
     }
 }
