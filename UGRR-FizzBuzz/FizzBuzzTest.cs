@@ -1,28 +1,22 @@
 ﻿namespace UGRR_FizzBuzz
 {
-    using System;
-    using System.Linq;
-
     using Should;
 
-    using Xunit;
+    using Xunit.Extensions;
 
     public class FizzBuzzTest
     {
-        [Fact]
-        public void OneIsOne()
+        [Theory]
+        [InlineData(1, "1", "One is one")]
+        [InlineData(2, "2", "Two is two")]
+        public void NumberIsNumber(
+            int number,
+            string result,
+            string message)
         {
             new FizzBuzz()
-                .Test(1)
-                .ShouldEqual("1");
-        }
-
-        [Fact]
-        public void TwoIsTwo()
-        {
-            new FizzBuzz()
-                .Test(2)
-                .ShouldEqual("2");
+                .Test(number)
+                .ShouldEqual(result, message);
         }
     }
 
