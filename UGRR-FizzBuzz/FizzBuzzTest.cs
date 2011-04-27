@@ -15,6 +15,7 @@
         [InlineData(6, "Fizz", "Six is Fizz")]
         [InlineData(10, "Buzz", "Ten is Buzz")]
         [InlineData(15, "FizzBuzz", "Fifteen is FizzBuzz")]
+        [InlineData(13, "Fizz", "Thirteen contains 3 and is Fizz")]
         public void NumberIsNumber(
             int number,
             string result,
@@ -53,7 +54,8 @@
 
         private bool IsFizz(int number)
         {
-            return number % 3 == 0;
+            return number % 3 == 0 ||
+                number.ToString().Contains("3");
         }
     }
 }
