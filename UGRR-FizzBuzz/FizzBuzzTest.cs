@@ -27,9 +27,15 @@
     {
         public string Test(int number)
         {
-            return number == 3 ?
-                "Fizz" + (number == 5 ? "Buzz" : ""):
-                number == 5 ? "Buzz" : number.ToString();
+            if (number == 3)
+            {
+                return "Fizz";
+            }
+            if (number == 5)
+            {
+                return "Buzz";
+            }
+            return number.ToString();
         }
     }
 }
