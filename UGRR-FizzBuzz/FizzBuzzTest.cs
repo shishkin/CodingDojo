@@ -30,19 +30,20 @@
     {
         public string Test(int number)
         {
-            if (number % 15 == 0)
-            {
-                return "FizzBuzz";
-            }
+            var result = "";
             if (number % 3 == 0)
             {
-                return "Fizz";
+                result += "Fizz";
             }
             if (number % 5 == 0)
             {
-                return "Buzz";
+                result += "Buzz";
             }
-            return number.ToString();
+            if (result == "")
+            {
+                result = number.ToString();
+            }
+            return result;
         }
     }
 }
